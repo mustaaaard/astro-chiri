@@ -1,11 +1,11 @@
 import type { APIContext, ImageMetadata } from 'astro'
 import { getImage } from 'astro:assets'
-import { getCollection, type CollectionEntry } from 'astro:content'
 import { Feed } from 'feed'
 import MarkdownIt from 'markdown-it'
 import { parse as htmlParser } from 'node-html-parser'
 import sanitizeHtml from 'sanitize-html'
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
+import { getSortedFilteredPosts } from '@/utils/draft'
 import path from 'node:path'
 
 const markdownParser = new MarkdownIt({
@@ -95,8 +95,8 @@ async function fixRelativeImagePaths(htmlContent: string, baseUrl: string, postP
  * Generate a generic Feed instance
  */
 async function generateFeedInstance(context: APIContext) {
-  const siteUrl = (context.site?.toString() || themeConfig.site.website).replace(/\/$/, '')
-  const { title = '', description = '', author = '', language = 'en-US' } = themeConfig.site
+  const siteUrl = (context.site?.toString() || siteConfig.site.website).replace(/\/$/, '')
+  const { title = '', description = '', author = '', language = 'en-US' } = siteConfig.site
 
   const feed = new Feed({
     title: title,
@@ -106,7 +106,7 @@ async function generateFeedInstance(context: APIContext) {
     language: language,
     copyright: `Copyright © ${new Date().getFullYear()} ${author}`,
     updated: new Date(),
-    generator: 'Astro Chiri Feed Generator',
+    generator: 'Astro',
     feedLinks: {
       rss: `${siteUrl}/rss.xml`,
       atom: `${siteUrl}/atom.xml`
@@ -117,10 +117,7 @@ async function generateFeedInstance(context: APIContext) {
     }
   })
 
-  const posts = await getCollection('posts', ({ id }: CollectionEntry<'posts'>) => !id.startsWith('_'))
-  const sortedPosts = posts.sort(
-    (a: CollectionEntry<'posts'>, b: CollectionEntry<'posts'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  )
+  const sortedPosts = await getSortedFilteredPosts()
 
   for (const post of sortedPosts) {
     const postSlug = post.id.replace(/\.[^/.]+$/, '')
@@ -139,7 +136,7 @@ async function generateFeedInstance(context: APIContext) {
 
     // Generate plain text summary for description
     const plainText = sanitizeHtml(cleanHtml, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, ' ').trim()
-    const description = plainText.length > 200 ? plainText.slice(0, 200) + '...' : plainText
+    const description = post.data.description ?? (plainText.length > 200 ? plainText.slice(0, 200) + '...' : plainText)
 
     feed.addItem({
       title: post.data.title,

@@ -1,16 +1,29 @@
 ---
 import IndexLayout from '@/layouts/IndexLayout.astro'
 import About from '@/components/widgets/About.astro'
+import Experience from '@/components/widgets/Experience.astro'
+import Skills from '@/components/widgets/Skills.astro'
 import PostList from '@/components/widgets/PostList.astro'
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
 import { getSortedFilteredPosts } from '@/utils/draft'
 
 const posts = await getSortedFilteredPosts()
 ---
 
-<IndexLayout title={themeConfig.site.title} description={themeConfig.site.description}>
+<IndexLayout title={siteConfig.site.title} description={siteConfig.site.description}>
   <About />
-  <main>
+  <Experience />
+  <Skills />
+  <section class="writing" aria-labelledby="writing-heading">
+    <h2 id="writing-heading" class="section-heading">Writing</h2>
     <PostList posts={posts} />
-  </main>
+  </section>
 </IndexLayout>
+
+<style>
+  .writing {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

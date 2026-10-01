@@ -1,17 +1,16 @@
 ---
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
 import { ClientRouter } from 'astro:transitions'
 import ThemeManager from '@/components/ui/ThemeManager.astro'
-import FaviconThemeSwitcher from '@/components/ui/FaviconThemeSwitcher.astro'
 import TransitionWrapper from '@/components/layout/TransitionWrapper.astro'
 import type { LayoutProps } from '@/types'
 
 type Props = LayoutProps
 
 const { type = 'page' } = Astro.props
-const language = themeConfig.site.language || 'en-US'
-const contentWidth = themeConfig.general.contentWidth
-const fadeAnimation = themeConfig.general.fadeAnimation
+const language = siteConfig.site.language || 'en-US'
+const contentWidth = siteConfig.general.contentWidth
+const fadeAnimation = siteConfig.general.fadeAnimation
 const widthValue = Math.min(parseFloat(contentWidth), 50)
 const shouldUseCustomWidth = widthValue > 25
 const finalWidth = shouldUseCustomWidth ? `${widthValue}rem` : '25rem'
@@ -24,14 +23,12 @@ const finalWidth = shouldUseCustomWidth ? `${widthValue}rem` : '25rem'
     <slot name="head" />
   </head>
   <body
-    data-centered={themeConfig.general.centeredLayout}
+    data-centered={siteConfig.general.centeredLayout}
     style={`
       max-width: ${finalWidth};
       ${shouldUseCustomWidth ? `--content-width: ${widthValue}rem;` : ''}
     `}
   >
-    <FaviconThemeSwitcher />
-
     {
       fadeAnimation ? (
         <TransitionWrapper type={type} class="layout-wrapper">

@@ -34,6 +34,7 @@ export default [
       '.env*',
       '.cache/**',
       '.astro/**',
+      '.wrangler/**',
       '.DS_Store',
       'coverage/**'
     ]

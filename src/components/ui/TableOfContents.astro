@@ -1,5 +1,5 @@
 ---
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
 import type { TOCProps } from '@/types'
 
 const { toc = [] }: TOCProps = Astro.props
@@ -30,9 +30,9 @@ const { toc = [] }: TOCProps = Astro.props
 <script
   is:inline
   define:vars={{
-    contentWidth: themeConfig.general.contentWidth,
-    centeredLayout: themeConfig.general.centeredLayout,
-    toc: themeConfig.post.toc
+    contentWidth: siteConfig.general.contentWidth,
+    centeredLayout: siteConfig.general.centeredLayout,
+    toc: siteConfig.post.toc
   }}
 >
   ;(function () {

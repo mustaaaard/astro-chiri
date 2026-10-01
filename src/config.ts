@@ -1,38 +1,33 @@
-import type { ThemeConfig } from './types'
+import type { SiteConfig } from './types'
 
-export const themeConfig: ThemeConfig = {
-  // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
+export const siteConfig: SiteConfig = {
   site: {
-    website: 'https://chiri.the3ash.com/', // Site domain
-    title: 'CHIRI', // Site title
-    author: '3ASH', // Author name
-    description: 'Minimal blog built by Astro', // Site description
-    language: 'en-US' // Default language
+    website: 'https://gilliannepapasin.com/',
+    title: 'Gillianne Papasin - Creative Technologist / Design Engineer',
+    author: 'Gillianne Papasin',
+    description:
+      'Gillianne Papasin is a creative technologist and design engineer in Melbourne, working between design, frontend engineering and physical interaction. She runs Milk Krate, a creative technology studio.',
+    language: 'en-AU'
   },
 
-  // GENERAL SETTINGS ////////////////////////////////////////////////////////////////////////////////////
   general: {
-    contentWidth: '35rem', // Content area width
-    centeredLayout: true, // Use centered layout (false for left-aligned)
-    themeToggle: false, // Show theme toggle button (uses system theme by default)
-    postListDottedDivider: false, // Show dotted divider in post list
-    footer: true, // Show footer
-    fadeAnimation: true // Enable fade animations
+    contentWidth: '35rem',
+    centeredLayout: true, // false for left-aligned
+    themeToggle: true, // Light/dark toggle (follows system theme by default)
+    postListDottedDivider: false,
+    fadeAnimation: true
   },
 
-  // DATE SETTINGS ///////////////////////////////////////////////////////////////////////////////////////
   date: {
-    dateFormat: 'YYYY-MM-DD', // Date format: YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
-    dateSeparator: '.', // Date separator: . - / (except for MONTH DAY YYYY and DAY MONTH YYYY)
-    dateOnRight: true // Date position in post list (true for right, false for left)
+    dateFormat: 'YYYY-MM-DD', // YYYY-MM-DD, MM-DD-YYYY, DD-MM-YYYY, MONTH DAY YYYY, DAY MONTH YYYY
+    dateSeparator: '.', // Ignored for MONTH DAY YYYY and DAY MONTH YYYY
+    dateOnRight: true // Date position in the post list
   },
 
-  // POST SETTINGS ///////////////////////////////////////////////////////////////////////////////////////
   post: {
-    readingTime: false, // Show reading time in posts
-    toc: true, // Show table of contents (when there is enough page width)
-    imageViewer: true, // Enable image viewer
-    copyCode: true, // Enable copy button in code blocks
-    linkCard: true // Enable link card
+    readingTime: true,
+    toc: true, // Shown when there is enough page width
+    imageViewer: true,
+    copyCode: true
   }
 }

@@ -9,7 +9,7 @@ export interface TOCProps {
 export interface PostLayoutProps {
   title: string
   pubDate: Date
-  image?: string
+  description?: string
   readingTime?: ReadingTime
   toc?: TOCItem[]
 }
@@ -31,21 +31,6 @@ export interface BaseHeadProps {
   title: string
   description: string
   ogImage?: string
-}
-
-// ImageOptimizer component props interface
-export interface ImageOptimizerProps {
-  src: string | ImageMetadata
-  alt: string
-  width?: number
-  height?: number
-  quality?: number
-  format?: 'avif' | 'webp' | 'jpeg' | 'png'
-  loading?: 'lazy' | 'eager'
-  decoding?: 'async' | 'sync' | 'auto'
-  class?: string
-  caption?: string
-  priority?: boolean
 }
 
 // FormattedDate component props interface
@@ -81,12 +66,4 @@ export interface CardElements {
   stars: HTMLElement | null
   forks: HTMLElement | null
   license: HTMLElement | null
-}
-
-// LinkCard metadata interface (fetched from URL)
-export interface LinkCardMetadata {
-  title: string
-  description: string
-  image: string
-  imageAlt: string
 }

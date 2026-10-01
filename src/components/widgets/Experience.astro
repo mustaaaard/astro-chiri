@@ -1,0 +1,84 @@
+---
+import { experience } from '@/data/experience'
+---
+
+<section class="experience" aria-labelledby="experience-heading">
+  <h2 id="experience-heading" class="section-heading">Experience</h2>
+  <ul>
+    {
+      experience.map((item) => (
+        <li>
+          <p class="role">
+            <span class="org">{item.org}</span> <span class="sep">·</span> {item.role}
+          </p>
+          <div class="divider" />
+          <p class="dates">{item.dates}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .experience {
+    margin-bottom: 2.5rem;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  li {
+    min-height: 2.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .role {
+    min-width: 0;
+  }
+
+  .org {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .sep,
+  .dates {
+    color: var(--text-secondary);
+  }
+
+  .divider {
+    flex: 1 1 auto;
+    min-width: 1.5rem;
+    margin: 0 0.25rem;
+    height: 0.5px;
+    background-color: var(--border);
+  }
+
+  .dates {
+    flex-shrink: 0;
+    white-space: nowrap;
+    letter-spacing: var(--spacing-s);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 30rem) {
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0.5rem 0;
+    }
+
+    .divider {
+      display: none;
+    }
+  }
+</style>

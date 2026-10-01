@@ -1,13 +1,15 @@
 {
-  "name": "astro-chiri",
+  "name": "personal-website-2026",
+  "private": true,
+  "description": "Personal website of Gillianne Papasin, creative technologist and design engineer.",
+  "author": "Gillianne Papasin",
+  "homepage": "https://gilliannepapasin.com",
   "type": "module",
-  "version": "1.0.0",
-  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "pnpm exec tsx scripts/toggle-proxy.ts",
-    "build": "pnpm run prebuild && astro build",
+    "build": "astro build",
     "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
     "astro": "astro",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -17,12 +19,12 @@
     "update-theme": "tsx scripts/update-theme.ts"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/netlify": "^6.6.4",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/cloudflare": "^14.3.3",
+    "@astrojs/markdown-remark": "^7.3.1",
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/sitemap": "^3.7.4",
     "@playform/inline": "^0.1.2",
-    "astro": "^5.17.3",
+    "astro": "^7.3.5",
     "astro-og-canvas": "^0.10.1",
     "canvaskit-wasm": "^0.40.0",
     "feed": "^5.2.0",
@@ -42,8 +44,6 @@
     "@eslint/js": "^9.39.3",
     "@types/markdown-it": "^14.1.2",
     "@types/sanitize-html": "^2.16.0",
-    "@typescript-eslint/eslint-plugin": "^8.56.0",
-    "@typescript-eslint/parser": "^8.56.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.6.0",
@@ -52,6 +52,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.0"
+    "typescript-eslint": "^8.56.0",
+    "wrangler": "^4.145.0"
   }
 }

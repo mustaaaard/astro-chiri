@@ -16,7 +16,6 @@ export interface GeneralSettings {
   centeredLayout: boolean
   themeToggle: boolean
   postListDottedDivider: boolean
-  footer: boolean
   fadeAnimation: boolean
 }
 
@@ -33,11 +32,10 @@ export interface PostSettings {
   toc: boolean
   imageViewer: boolean
   copyCode: boolean
-  linkCard: boolean
 }
 
-// Theme configuration type
-export interface ThemeConfig {
+// Site configuration type
+export interface SiteConfig {
   site: SiteInfo
   general: GeneralSettings
   date: DateSettings

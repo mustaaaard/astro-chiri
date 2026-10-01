@@ -1,5 +1,5 @@
 import { visit } from 'unist-util-visit'
-import { themeConfig } from '../config.ts'
+import { siteConfig } from '../config.ts'
 
 /**
  * Rehype plugin that processes images in markdown content:
@@ -41,7 +41,7 @@ export default function rehypeImageProcessor() {
         // Enhanced image properties with performance optimizations
         imgNode.properties = {
           ...imgNode.properties,
-          'data-preview': themeConfig.post.imageViewer ? 'true' : 'false',
+          'data-preview': siteConfig.post.imageViewer ? 'true' : 'false',
           // Add lazy loading for better performance
           loading: 'lazy',
           // Add decoding hint for better performance

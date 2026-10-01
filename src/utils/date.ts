@@ -1,4 +1,4 @@
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
 import type { DateFormat } from '@/types'
 
 const MONTHS_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -11,8 +11,8 @@ const VALID_SEPARATORS = ['.', '-', '/']
  * @returns
  */
 export function formatDate(date: Date, format?: string): string {
-  const formatStr = (format || themeConfig.date.dateFormat).trim()
-  const configSeparator = themeConfig.date.dateSeparator || '-'
+  const formatStr = (format || siteConfig.date.dateFormat).trim()
+  const configSeparator = siteConfig.date.dateSeparator || '-'
 
   const separator = VALID_SEPARATORS.includes(configSeparator.trim()) ? configSeparator.trim() : '.'
 

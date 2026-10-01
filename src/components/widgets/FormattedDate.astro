@@ -1,5 +1,5 @@
 ---
-import { themeConfig } from '@/config'
+import { siteConfig } from '@/config'
 import { formatDate } from '@/utils/date'
 import type { FormattedDateProps } from '@/types'
 
@@ -12,8 +12,8 @@ const {
 
 <time
   datetime={date.toISOString()}
-  class={!themeConfig.date.dateOnRight &&
-  (themeConfig.date.dateFormat === 'MONTH DAY YYYY' || themeConfig.date.dateFormat === 'DAY MONTH YYYY') &&
+  class={!siteConfig.date.dateOnRight &&
+  (siteConfig.date.dateFormat === 'MONTH DAY YYYY' || siteConfig.date.dateFormat === 'DAY MONTH YYYY') &&
   context === 'list'
     ? 'date-left'
     : ''}

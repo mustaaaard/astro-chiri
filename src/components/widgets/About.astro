@@ -20,4 +20,14 @@ const { Content } = hasContent && aboutEntry ? await render(aboutEntry) : { Cont
   .about:not(:empty) {
     margin-bottom: 1.25rem;
   }
+
+  .about :global(.name-muted),
+  .about :global(.availability) {
+    color: var(--text-secondary);
+  }
+
+  .about :global(.work-link) {
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+  }
 </style>

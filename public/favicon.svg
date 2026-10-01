@@ -1,7 +1,10 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path
-    id="favicon-path"
-    d="M13.01 3.02012C16.5087 3.32261 15.7585 6.82492 15.1644 8.55758C16.5552 7.78594 19.4018 7.08057 20.7714 9.93496C21.8873 12.2611 18.6043 14.5042 16.8024 14.9432C18.0362 15.9418 19.7564 18.4092 16.7692 20.2915C13.7817 22.174 11.8117 19.8636 11.2003 18.4728C10.2078 19.725 7.65839 21.6446 5.39725 19.3086C3.13594 16.9725 4.74247 15.0896 5.82839 14.4402C4.26378 13.8589 1.72059 11.053 3.75238 8.01759C5.03167 6.10638 7.83278 6.73511 8.64225 7.54835C8.49436 5.90035 9.5108 2.71767 13.01 3.02012ZM12.3625 9.65366C8.87846 9.35262 7.35137 15.1408 11.8961 14.9201C14.9003 14.7743 15.3841 9.91482 12.3625 9.65366Z"
-    fill="#111"
-  />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1080 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1.19521,0,0,1.19521,-113.448,-210.826)">
+        <circle cx="546.722" cy="628.196" r="451.804" style="fill:url(#_Radial1);"/>
+    </g>
+    <defs>
+        <radialGradient id="_Radial1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(903.607,0,0,903.607,94.9186,628.196)"><stop offset="0" style="stop-color:white;stop-opacity:1"/><stop offset="0.52" style="stop-color:rgb(68,68,68);stop-opacity:1"/><stop offset="1" style="stop-color:black;stop-opacity:1"/></radialGradient>
+    </defs>
 </svg>

@@ -1,51 +1,60 @@
-import { getCollection, type CollectionEntry } from 'astro:content'
+import fs from 'node:fs/promises'
 import { OGImageRoute } from 'astro-og-canvas'
-import { themeConfig } from '../../config'
+import { siteConfig } from '../../config'
+import { getFilteredPosts } from '../../utils/draft'
+import { renderFavicon } from '../../utils/icon'
 
 export const prerender = true
 
-const collectionEntries = await getCollection('posts')
+interface OGPage {
+  title: string
+  description: string
+}
 
-// Map the array of content collection entries to create an object.
-// Converts [{ id: 'post.md', data: { title: 'Example', pubDate: Date } }]
-// to { 'post.md': { title: 'Example', pubDate: Date } }
-const pages = Object.fromEntries(
-  collectionEntries.map((entry: CollectionEntry<'posts'>) => [entry.id.replace(/\.(md|mdx)$/, ''), entry.data])
-)
+// astro-og-canvas only accepts a logo file path, so render the favicon to a cached PNG.
+const logoPath = 'node_modules/.cache/og/logo.png'
+await fs.mkdir('node_modules/.cache/og', { recursive: true })
+await fs.writeFile(logoPath, await renderFavicon(160))
+
+const posts = await getFilteredPosts()
+
+// `index` is the homepage share image; every other key is a post slug.
+const pages: Record<string, OGPage> = {
+  index: { title: siteConfig.site.title, description: new URL(siteConfig.site.website).host },
+  ...Object.fromEntries(
+    posts.map((post) => [
+      post.id.replace(/\.(md|mdx)$/, ''),
+      { title: post.data.title, description: siteConfig.site.title }
+    ])
+  )
+}
 
 export const { getStaticPaths, GET } = await OGImageRoute({
   param: 'route',
   pages,
-  getImageOptions: (_path: string, page: CollectionEntry<'posts'>['data']) => ({
+  getImageOptions: (_path: string, page: OGPage) => ({
     title: page.title,
-    description: themeConfig.site.title,
+    description: page.description,
     logo: {
-      path: 'public/og/og-logo.png',
+      path: logoPath,
       size: [80, 80]
     },
     bgGradient: [[255, 255, 255]],
-    bgImage: {
-      path: 'public/og/og-bg.png',
-      fit: 'fill'
-    },
     padding: 64,
     font: {
       title: {
         color: [28, 28, 28],
         size: 68,
         weight: 'SemiBold',
-        families: ['PingFang SC']
+        families: ['Inter']
       },
       description: {
         color: [180, 180, 180],
         size: 40,
         weight: 'Medium',
-        families: ['PingFang SC']
+        families: ['Inter']
       }
     },
-    fonts: [
-      'https://cdn.jsdelivr.net/npm/font-pingfang-sc-font-weight-improved@latest/PingFangSC-Medium.woff2',
-      'https://cdn.jsdelivr.net/npm/font-pingfang-sc-font-weight-improved@latest/PingFangSC-Semibold.woff2'
-    ]
+    fonts: ['./public/fonts/Inter.woff2']
   })
 })

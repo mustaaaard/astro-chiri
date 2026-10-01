@@ -1,0 +1,3 @@
+# Keep server-side build output out of the public asset upload.
+_worker.js
+_routes.json
