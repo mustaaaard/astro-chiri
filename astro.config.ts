@@ -14,14 +14,10 @@ import remarkTOC from './src/plugins/remark-toc.mjs'
 import { siteConfig } from './src/config'
 import { imageConfig } from './src/utils/image-config'
 import path from 'path'
-import cloudflare from '@astrojs/cloudflare'
 import { unified } from '@astrojs/markdown-remark'
 
 export default defineConfig({
-  // Deployed to Cloudflare Workers (see wrangler.jsonc).
-  // `prerenderEnvironment: 'node'` keeps prerendering in Node instead of workerd
-  // (the v14 default) so the `canvaskit-wasm` externalisation below still works.
-  adapter: cloudflare({ prerenderEnvironment: 'node' }),
+  // Fully static build, deployed to Cloudflare Pages (output: dist/).
   site: siteConfig.site.website,
   image: {
     service: {
@@ -55,9 +51,8 @@ export default defineConfig({
       }
     },
     // canvaskit-wasm (via astro-og-canvas) is CommonJS and uses `__dirname` to locate
-    // canvaskit.wasm. The Cloudflare adapter emits ESM, where `__dirname` is undefined.
-    // OG images are prerendered at build time, so keep canvaskit external and let Node
-    // resolve it from node_modules rather than inlining it into the worker bundle.
+    // canvaskit.wasm. Bundled ESM has no `__dirname`, so keep canvaskit external and
+    // let Node resolve it from node_modules when OG images are prerendered at build time.
     ssr: {
       external: ['canvaskit-wasm']
     }
